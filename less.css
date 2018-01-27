@@ -1,0 +1,118 @@
+/*
+ * less 特性一 嵌套 结构会变得非常清晰
+ */
+/* 存在包含关系的class 可以在less中直接包含在{}内层层嵌套 */
+nav {
+  width: 100px;
+  height: 100px;
+}
+nav .content {
+  width: 20px;
+  margin: 0 auto;
+}
+nav .content a {
+  color: #fff;
+}
+nav .content a:hover {
+  color: #333;
+}
+nav .content .left {
+  float: left;
+}
+nav .content .left.padding_left {
+  padding-left: 5px;
+  /* & 符号代表上一级父元素 */
+}
+nav .content .right {
+  float: right;
+}
+/*
+ * less 特性二 变量 定义全局的一些属性 大范围调整颜色时非常有利、也方便定义一些通用样式
+ */
+.boxOne {
+  width: 12px;
+  border: 12px solid #ff0000;
+}
+.boxTwo {
+  width: 12px;
+  border: 12px solid #0000ff;
+}
+.boxThree .main {
+  width: 10px;
+}
+/*
+ * less 特性三 混合 我的理解是定义 公用的class 来完善代码的重用
+ */
+/* 混合属性的class 命名最好为 classBorder classWidth 这类  或者 完全语义化的命名 如 clearFix */
+.classA {
+  border: 1px solid #b7b7b7;
+}
+.clearFix {
+  *zoom: 1;
+}
+.clearFix:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+.classB {
+  border: 1px solid #b7b7b7;
+  *zoom: 1;
+}
+.classB:after {
+  content: '';
+  display: block;
+  clear: both;
+}
+/*
+ * less 特性三 混合之带参混合  function写法 可以传递一个参数，也可以传递多个
+ */
+/* .boxFour {
+    .border(#666);
+}                       class类指定几参，在调用的地方也同样需要几参，不如就会编译失败
+.boxFive {
+    .border(#333);
+} */
+.boxSix {
+  border: 1px solid #222222;
+}
+/*
+ * less 特性三 混合之带默认值的参数混合  
+ */
+.boxSeven {
+  border: 1px solid #ffffff;
+}
+.boxEight {
+  border: 2px solid #ffffff;
+}
+/* 特别指出 less 有一个arguments 变量，代表了所有的参数 , 它只能在不在乎参数顺序的情况下使用 */
+.boxNine {
+  border: #ff0000 100px #333333;
+}
+/*
+ * less 特性四 模式匹配  
+ */
+.boxTen {
+  border-top: 1px solid #333333;
+  width: 100px;
+}
+.boxEleven {
+  border-left: 1px solid #333333;
+  width: 100px;
+}
+/*
+ * less 特性五 Math函数  命名空间 
+ *  round(2.4); 四舍五入
+ *  ceil(2.4); 向上取整
+ *  floor(2.6); 向下取整
+ *
+ */
+.pink .button {
+  background: blue;
+}
+.black .button {
+  background: red;
+}
+.boxTwelve {
+  background: red;
+}

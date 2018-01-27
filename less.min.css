@@ -1,0 +1,20 @@
+nav{width:100px;height:100px}
+nav .content{width:20px;margin:0 auto}
+nav .content a{color:#fff}
+nav .content a:hover{color:#333}
+nav .content .left{float:left}
+nav .content .left.padding_left{padding-left:5px}
+nav .content .right{float:right}
+.boxOne{width:12px;border:12px solid red}
+.boxTwo{width:12px;border:12px solid #00f}
+.boxThree .main{width:10px}
+.classA{border:1px solid #b7b7b7}
+.clearFix:after{content:'';display:block;clear:both}
+.classB{border:1px solid #b7b7b7}
+.classB:after{content:'';display:block;clear:both}
+.boxSix{border:1px solid #222}
+.boxSeven{border:1px solid #fff}
+.boxEight{border:2px solid #fff}
+.boxNine{border:red 100px #333}
+.boxTen{border-top:1px solid #333;width:100px}
+.boxEleven{border-left:1px solid #333;width:100px}

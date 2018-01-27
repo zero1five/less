@@ -1,0 +1,174 @@
+/*
+ * less 特性一 嵌套 结构会变得非常清晰
+ */
+
+ /* 存在包含关系的class 可以在less中直接包含在{}内层层嵌套 */
+ nav {
+     width: 100px;
+     height: 100px;
+
+     .content {
+         width: 20px;
+         margin: 0 auto;
+        a {
+            color: #fff;
+            &:hover {
+                color: #333;
+            }
+        }
+         .left {
+            float: left;
+            &.padding_left {
+                padding-left: 5px; /* & 符号代表上一级父元素 */
+            }
+         }
+         .right {
+             float: right;
+         }
+     } 
+ }
+
+
+/*
+ * less 特性二 变量 定义全局的一些属性 大范围调整颜色时非常有利、也方便定义一些通用样式
+ */
+
+@width:12px;
+@style:solid;
+@red:red;
+@blue:blue;
+
+.boxOne {
+    width: @width; 
+    border: @width @style @red;
+}
+
+.boxTwo {
+    width: @width; 
+    border: @width @style @blue;
+}
+
+.boxThree {
+    @a:10px;
+    .main {
+        width: @a; // 作用域特性 可以定义一些局部的变量来使用
+    }
+}
+
+/*
+ * less 特性三 混合 我的理解是定义 公用的class 来完善代码的重用
+ */
+
+/* 混合属性的class 命名最好为 classBorder classWidth 这类  或者 完全语义化的命名 如 clearFix */
+
+.classA {
+     border: 1px solid #b7b7b7;
+ }
+
+.clearFix {
+    *zoom: 1;
+    &:after {
+        content: '';
+        display: block;
+        clear: both;
+    }
+}
+
+ .classB {
+     .classA;
+     .clearFix;
+ }
+
+/*
+ * less 特性三 混合之带参混合  function写法 可以传递一个参数，也可以传递多个
+ */
+
+.border(@widthTwo,@color) {
+    border: @widthTwo solid @color;
+}
+/* .boxFour {
+    .border(#666);
+}                       class类指定几参，在调用的地方也同样需要几参，不如就会编译失败
+.boxFive {
+    .border(#333);
+} */
+.boxSix {
+    .border(1px,#222);
+}
+
+/*
+ * less 特性三 混合之带默认值的参数混合  
+ */
+
+ .classC(@widthThree:1px) {
+     border: @widthThree solid #fff;
+ }
+
+.boxSeven {
+     .classC;
+}                   // 可以给class类的参数增加默认值
+.boxEight {
+    .classC(2px);
+}
+
+/* 特别指出 less 有一个arguments 变量，代表了所有的参数 , 它只能在不在乎参数顺序的情况下使用 */
+
+
+.borderTwo(@green:green,@height:100px) {
+    border:@arguments #333;
+}
+
+.boxNine {
+    .borderTwo(red);
+}
+
+
+
+/*
+ * less 特性四 模式匹配  
+ */
+
+.borderThree(top,@width:1px) {
+     border-top: @width solid #333;
+}
+
+.borderThree(left,@width:1px) {
+    border-left: @width solid #333;
+}
+.borderThree(@_,@width:1px) {
+    width: 100px;
+}
+
+.boxTen {
+    .borderThree(top);
+}
+
+.boxEleven {
+    .borderThree(left);
+}
+
+
+
+/*
+ * less 特性五 Math函数  命名空间 
+ *  round(2.4); 四舍五入
+ *  ceil(2.4); 向上取整
+ *  floor(2.6); 向下取整
+ *
+ */
+
+.pink {
+    .button {
+       background: blue; 
+    }
+}
+.black {
+    .button {
+        background: red;
+    }
+}
+
+.boxTwelve {
+    .black > .button;
+}
+
